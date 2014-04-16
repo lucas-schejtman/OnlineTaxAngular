@@ -3,18 +3,13 @@
 app.controller('formsController', function ($scope, formsService) {
     $scope.forms = [];
 
-    init();
-    
-    function init() {
-        getForms();
-    }
-    
-    function getForms() {
-        formsService.getForms()
-            .then(function(results) {
-                $scope.forms = results;
-            }, function(error) {
-                alert(error.message);
-            });
-    }
+    $scope.init = function() {
+        formsService.getForms().then(function (result) {
+            $scope.forms = result.data;
+        }, function(error) {
+            console.log('error ' + error.message);
+        });
+    };
+
+    $scope.init();
 });

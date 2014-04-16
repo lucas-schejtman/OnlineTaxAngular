@@ -138,6 +138,7 @@
     <Content Include="app\controllers\aboutController.js" />
     <Content Include="app\controllers\formsController.js" />
     <Content Include="app\controllers\donationsController.js" />
+    <Content Include="app\controllers\modalController.js" />
     <Content Include="app\directives\numbersOnlyInput.js" />
     <Content Include="app\services\formsService.js" />
     <Content Include="app\tests\lib\angular-mock.js" />
@@ -147,6 +148,7 @@
     <Content Include="app\tests\lib\jasmine\jasmine.js" />
     <Content Include="app\sample.conf.js" />
     <Content Include="app\tests\unit\aboutSpec.js" />
+    <Content Include="app\tests\unit\formsSpec.js" />
     <Content Include="app\views\about.html" />
     <Content Include="app\views\forms.html" />
     <Content Include="app\views\forms\526.html" />

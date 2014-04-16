@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-describe("Testing the about controller", function() {
-    //beforeEach(angular.mock.module('OnlineTaxApp'));
+describe("Testing the aboutController", function() {
     beforeEach(function() {
         module('OnlineTaxApp');
         module('toaster');
         module('chieffancypants.loadingBar');
+        module('ui.bootstrap');
     });
 
     var aboutCtrl, scope;
@@ -17,7 +17,7 @@ describe("Testing the about controller", function() {
         });
     }));
 
-    it("Should say 'About Us'", function() {
-        expect(scope.message).toBe('About Us');
+    it("Should say 'Online Tax Sample Application using AngularJS'", function () {
+        expect(scope.message).toBe('Online Tax Sample Application using AngularJS');
     });
 });

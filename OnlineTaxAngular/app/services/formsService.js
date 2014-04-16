@@ -2,16 +2,15 @@
 
 app.factory('formsService', function ($http) {
     var serviceBase = '/api/Forms/';
-    var formsDataFactory = {};
-    
-    var getForms = function () {
-        return $http.get(serviceBase)
-                    .then(function(results) {
-                        return results.data;
-                    });
+    var formService = {
+        getForms: function () {
+            return $http.get(serviceBase).success(function (results) {
+                return results;
+            }).error(function() {
+                return [];
+            });
+        }
     };
 
-    formsDataFactory.getForms = getForms;
-
-    return formsDataFactory;
+    return formService;
 });

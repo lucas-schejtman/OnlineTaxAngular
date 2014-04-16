@@ -1,5 +1,4 @@
-﻿var app = angular.module('OnlineTaxApp', ['ngRoute', 'chieffancypants.loadingBar', 'toaster']);
-//['ngRoute', 'ngResource', 'ui.bootstrap','toaster', 'chieffancypants.loadingBar', 'ngAnimate']
+﻿var app = angular.module('OnlineTaxApp', ['ngRoute', 'chieffancypants.loadingBar', 'toaster', 'ngAnimate', 'ui.bootstrap']);
 
 app.config(function ($routeProvider, cfpLoadingBarProvider) {
     $routeProvider.when("/about", {

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('donationsController', function ($scope, toaster, $window/*, $modal*/) {
+app.controller('donationsController', function ($scope, toaster, $window, $modal) {
     $scope.irdNumber = "";
     $scope.taxYear = "";
     $scope.box3 = "";
@@ -17,32 +17,21 @@ app.controller('donationsController', function ($scope, toaster, $window/*, $mod
     };
 
     $scope.save = function() {
-/*        var diag = $modal.open({
+        var diag = $modal.open({
             templateUrl: 'app/views/modal.html',
-            controller: modalController
+            controller: 'modalController'
         });
 
         diag.result.then(function() {
             toaster.pop('information', 'Modal Info', 'Form submitted');
         }, function() {
             toaster.pop('information', 'Modal Info', 'Dialog dismissed');
-        });*/
+        });
     };
 
     $scope.cancelBtn = function() {
         $window.history.back();
     };
-
-/*    var modalController = function($scope, $modalInstance) {
-        $scope.ok = function () {
-            // submit the form
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-        };
-    };*/
 
     toaster.pop('information', 'Form Information', 'IR526 Form Loaded!');
 });

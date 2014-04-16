@@ -20,10 +20,11 @@ module.exports = function(config) {
         '../Scripts/angular-route.min.js',
         '../Scripts/angular-animate.min.js',
         '../Scripts/loading-bar.min.js',
+        '../Scripts/ui-bootstrap-tpls-0.10.0.js',
         '../Scripts/toaster.js',
         'app.js',
-        'controllers/aboutController.js',
-        'tests/unit/aboutSpec.js'
+        'controllers/*.js',
+        'tests/unit/*.js'
     ],
 
 
