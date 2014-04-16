@@ -1,0 +1,94 @@
+﻿<div id="donationsFormContainer" class="center-block">
+    <form class="form-horizontal" method="POST" name="donationsForm">
+        <fieldset>
+            <legend>
+                Tax credit claim form (IR526)
+            </legend>
+            <div class="form-group">
+                <label for="irdNumber" class="control-label col-xs-2">IRD Number</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control"
+                           ng-model="irdNumber" ng-init="irdNumber='To Be Populated'"
+                           id="irdNumber" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taxYear" class="control-label col-xs-2">Tax year</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" 
+                           ng-model="taxYear" ng-init="taxYear='To Be Populated'"
+                           id="taxYear" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">3</label>
+                <div class="col-xs-4">
+                    <numbers-only-input class-name="form-control"
+                                        input-value="box3"
+                                        required="true" />
+                </div>
+                <button type="button" class="btn btn-default" 
+                        id="box3Tooltip"
+                        popover-placement="right"
+                        popover="Add up your donations (of $5 or more) made during the tax year to donee organisations. Don't include donations made through payroll giving">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <label for="box3a" class="control-label col-xs-2">3a</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" 
+                           value="{{box3a()}}"
+                           id="box3a" readonly="readonly">
+                </div>
+                <button type="button" class="btn btn-default" id="box3aTooltip"
+                        popover-placement="right" 
+                        popover="Multiply the amount in Box 3 by 33.3333% and enter the answer in Box 3A">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">4</label>
+                <div class="col-xs-4">
+                    <numbers-only-input class-name="form-control"
+                                        input-value="box4"
+                                        required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="box4a" class="control-label col-xs-2">4a</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" 
+                           value="{{box4a()}}"
+                           id="box4a" readonly="readonly">
+                </div>
+                <button type="button" class="btn btn-default" id="box4aTooltip"
+                        popover-placement="right" 
+                        popover="If the amount in the Box 4 is $940 or more, enter $310 in Box 4a. If the amount is Box 4 is less than $940, multiply it by 33% and enter the answer in Box 4a">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <label for="box5" class="control-label col-xs-2">5</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control"
+                           value="{{box5()}}" readonly="readonly"
+                           id="box5">
+                </div>
+                <button type="button" class="btn btn-default" id="box5Tooltip"
+                        popover-placement="right" 
+                        popover="Total donations, childcare and housekeeper entitlements. Box 3A + Box 4A">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button class="btn btn-default" ng-click="cancelBtn()">Cancel</button>
+                    <button id="btnSubmit" ng-click="save()"
+                            ng-disabled="donationsForm.$invalid"
+                            class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>    
