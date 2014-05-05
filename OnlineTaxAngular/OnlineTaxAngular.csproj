@@ -140,13 +140,15 @@
     <Content Include="app\controllers\donationsController.js" />
     <Content Include="app\controllers\modalController.js" />
     <Content Include="app\directives\numbersOnlyInput.js" />
+    <Content Include="app\gulpfile.js" />
+    <Content Include="app\karma.conf.js" />
     <Content Include="app\services\formsService.js" />
+    <Content Include="app\summary.txt" />
     <Content Include="app\tests\lib\angular-mock.js" />
     <Content Include="app\tests\lib\angular.js" />
     <Content Include="app\tests\lib\jasmine\jasmine-html.js" />
     <Content Include="app\tests\lib\jasmine\jasmine.css" />
     <Content Include="app\tests\lib\jasmine\jasmine.js" />
-    <Content Include="app\sample.conf.js" />
     <Content Include="app\tests\unit\aboutSpec.js" />
     <Content Include="app\tests\unit\formsSpec.js" />
     <Content Include="app\views\about.html" />
@@ -159,16 +161,17 @@
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
-    <Content Include="Scripts\angular-animate.min.js" />
-    <Content Include="Scripts\angular-resource.min.js" />
-    <Content Include="Scripts\angular-route.min.js" />
-    <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\loading-bar.min.js" />
-    <Content Include="Scripts\toaster.js" />
-    <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
+    <Content Include="Scripts\vendor\angular-notify-toaster\toaster.js" />
+    <Content Include="Scripts\vendor\angular-ui-bootstrap\ui-bootstrap-tpls-0.10.0.js" />
     <Content Include="Index.html" />
     <Content Include="app\views\modal.html" />
+    <Content Include="Scripts\vendor\angular-animate\angular-animate.min.js" />
+    <Content Include="Scripts\vendor\angular-loading-bar\build\loading-bar.min.js" />
+    <Content Include="Scripts\vendor\angular-resource\angular-resource.min.js" />
+    <Content Include="Scripts\vendor\angular-route\angular-route.min.js" />
+    <Content Include="Scripts\vendor\angular\angular.min.js" />
+    <Content Include="Scripts\vendor\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Scripts\vendor\jquery\dist\jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -196,6 +199,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\tests\lib\jasmine\MIT.LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\.bowerrc" />
+    <Content Include="app\bower.json" />
+    <Content Include="app\package.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
