@@ -23,7 +23,7 @@ info.dest = {
 }
 
 // Karma support function
-// TODO: Keep an eye on gulp-karma, at this stage is not better than this method
+// TODO: Keep an eye on gulp-karma, however at this stage is not better than this method
 function runKarma(configFilePath, options, cb) {
 	configFilePath = path.resolve(configFilePath);
 

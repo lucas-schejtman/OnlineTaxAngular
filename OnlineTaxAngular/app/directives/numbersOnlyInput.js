@@ -1,17 +1,28 @@
 ﻿app.directive('numbersOnlyInput', function() {
     return {
         restrict: 'EA',
-        template: '<input class="{{className}}" ng-model="inputValue" required="{{required}}" />',
+        template: '<input class="{{className}}" ng-model="inputValue" required="{{required}}" allowdecimals="{{decimals}}" allownegatives="{{negatives}}" />',
         scope: {
             inputValue: '=',
             className: '@',
-            required: '@'
+            required: '@',
+            decimals: '@',
+            negatives: '@'
         },
-        link: function (scope) {
-            scope.$watch('inputValue', function(newValue, oldValue) {
+        replace: true,
+        link: function (scope, ele, attr) {
+            scope.$watch('inputValue', function (newValue, oldValue) {
                 var arr = String(newValue).split("");
                 if (arr.length === 0) return;
-                if (arr.length === 1 && (arr[0] === '-' || arr[0] === '.')) return;
+                var allowDecimals = String(attr.allowdecimals).trim();
+                var allowNegatives = String(attr.allownegatives).trim();
+                if (arr.length === 1 && ((allowNegatives === 'true' && arr[0] === '-') || (allowDecimals === 'true' && arr[0] === '.'))) return;
+                if (allowDecimals === 'false') {
+                    if (arr.indexOf('.') > -1) {
+                        scope.inputValue = oldValue;
+                        return;
+                    }
+                }
                 if (arr.length === 2 && newValue === '-.') return;
                 if (isNaN(newValue)) {
                     scope.inputValue = oldValue;

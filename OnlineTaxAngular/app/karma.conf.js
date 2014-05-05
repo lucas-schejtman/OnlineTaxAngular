@@ -17,11 +17,11 @@ module.exports = function(config) {
     files: [
         'tests/lib/angular.js',
         'tests/lib/angular-mock.js',
-        '../Scripts/angular-route.min.js',
-        '../Scripts/angular-animate.min.js',
-        '../Scripts/loading-bar.min.js',
-        '../Scripts/ui-bootstrap-tpls-0.10.0.js',
-        '../Scripts/toaster.js',
+        '../Scripts/vendor/angular-route/angular-route.min.js',
+        '../Scripts/vendor/angular-animate/angular-animate.min.js',
+        '../Scripts/vendor/angular-loading-bar/build/loading-bar.min.js',
+        '../Scripts/vendor/angular-ui-bootstrap/ui-bootstrap-tpls-0.10.0.js',
+        '../Scripts/vendor/angular-notify-toaster/toaster.js',
         'app.js',
         'controllers/*.js',
         'tests/unit/*.js'

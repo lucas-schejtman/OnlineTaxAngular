@@ -22,11 +22,13 @@ What have I used for this
 	Package Manager    -> NPM
 }
 
-Requirements: NPM, Bower
+Requirements: NPM, Bower, Gulp
 
 How to use:
 1) Install npm
 2) cd to project folder 
 3) run 'npm install'
 4) run 'bower install' 
+5) run 'gulp first-run'
+6) download angular-toaster
 
