@@ -1,6 +1,6 @@
-﻿'use strict';
-
-app.controller('formsController', function ($scope, formsService) {
+﻿app.controller('formsController', function ($scope, formsService) {
+    'use strict';
+    
     $scope.forms = [];
 
     $scope.init = function() {

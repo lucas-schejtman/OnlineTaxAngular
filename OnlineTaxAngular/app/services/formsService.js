@@ -1,6 +1,6 @@
-﻿'use strict';
+﻿app.factory('formsService', function ($http) {
+    'use strict';
 
-app.factory('formsService', function ($http) {
     var serviceBase = '/api/Forms/';
     var formService = {
         getForms: function () {

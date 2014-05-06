@@ -28,6 +28,6 @@
     "angular-resource": "~1.2.16",
     "angular-notify-toaster": "~0.4.6",
     "angular-loading-bar": "~0.4.1",
-    "angular-ui-bootstrap": "~0.11.0"
+    "angular-bootstrap": "~0.11.0"
   }
 }

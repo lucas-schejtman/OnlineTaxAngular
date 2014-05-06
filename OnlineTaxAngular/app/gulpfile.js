@@ -13,14 +13,20 @@ var info = {};
 
 info.src = {
 	js: ['controllers/*.js', 'directives/*.js', 'services/*.js'],
-	bower: ['components/**/dist/**/*.min.js', 'components/**/*.min.js', '!components/**/src/**/dist/*.min.js']
+	bower: {
+	    js: ['components/**/dist/**/*.min.js', 'components/angular-notify-toaster/toaster.js', 'components/**/*.min.js', '!components/**/src/**/dist/*.min.js'],
+	    css: ['components/**/*.min.css', 'components/angular-notify-toaster/toaster.css', 'components/**/*.min.css', '!components/**/src/**/dist/*.min.css']
+	}
 };
 
 info.dest = {
-	js: 'build/js',
-	bower: '../Scripts/vendor',
-	all: 'build/**/*.*'
-}
+    js: 'build/js',
+    bower: {
+        js: '../Scripts/vendor',
+        css: '../Content/css/vendor'
+    },
+    all: 'build/**/*.*'
+};
 
 // Karma support function
 // TODO: Keep an eye on gulp-karma, however at this stage is not better than this method
@@ -71,11 +77,16 @@ gulp.task('clean', function () {
 			 .pipe(clean());
 });
 
-gulp.task('copy-components', function() {
-	return gulp.src(info.src.bower)
-			   .pipe(gulp.dest(info.dest.bower));
+gulp.task('copy-js-components', function() {
+	return gulp.src(info.src.bower.js)
+			   .pipe(gulp.dest(info.dest.bower.js));
 });
 
-gulp.task('first-run', ['copy-components']);
+gulp.task('copy-css-components', function () {
+    return gulp.src(info.src.bower.css)
+			   .pipe(gulp.dest(info.dest.bower.css));
+});
+
+gulp.task('first-run', ['copy-js-components', 'copy-css-components']);
 gulp.task('release', ['clean', 'scripts']);
 gulp.task('development', ['scripts', 'watch']);
