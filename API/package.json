@@ -1,0 +1,16 @@
+{
+  "name": "API",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Schejtman <lucas.schejtman@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "restify": "~2.7.0",
+    "save": "0.0.20",
+    "mongojs": "~0.13.0"
+  }
+}
