@@ -14,39 +14,7 @@ server.use(restify.fullResponse())
 var connection_string = '127.0.0.1:27017/prototype';
 var db = mongojs(connection_string, ['prototype']);
 var forms = db.collection("forms");
-
-
-/*var forms = [{
-	name: 'Tax credit claim form 2014 IR526',
-	path: '526',
-	country: 'New Zealand',
-	description:'Complete this form to claim tax credits for donations for the tax year 1 April 2013 to 31 March 2014. If you are making a claim for the years 2011 and before, or the 2012 year, please use either the Tax credit claim form 2000-2011 (IR526) and/or the Tax credit claim form 2013 (IR526).'
-},{
-	name: 'Tax credit claim form 2014 IR526',
-	path: '526',
-	country: 'New Zealand',
-	description:'Complete this form to claim tax credits for donations for the tax year 1 April 2013 to 31 March 2014. If you are making a claim for the years 2011 and before, or the 2012 year, please use either the Tax credit claim form 2000-2011 (IR526) and/or the Tax credit claim form 2013 (IR526).'
-},{
-	name: 'Tax credit claim form 2014 IR526',
-	path: '526',
-	country: 'New Zealand',
-	description:'Complete this form to claim tax credits for donations for the tax year 1 April 2013 to 31 March 2014. If you are making a claim for the years 2011 and before, or the 2012 year, please use either the Tax credit claim form 2000-2011 (IR526) and/or the Tax credit claim form 2013 (IR526).'
-},{
-	name: 'Tax credit claim form 2014 IR526',
-	path: '526',
-	country: 'New Zealand',
-	description:'Complete this form to claim tax credits for donations for the tax year 1 April 2013 to 31 March 2014. If you are making a claim for the years 2011 and before, or the 2012 year, please use either the Tax credit claim form 2000-2011 (IR526) and/or the Tax credit claim form 2013 (IR526).'
-},{
-	name: 'Tax credit claim form 2014 IR526',
-	path: '526',
-	country: 'New Zealand',
-	description:'Complete this form to claim tax credits for donations for the tax year 1 April 2013 to 31 March 2014. If you are making a claim for the years 2011 and before, or the 2012 year, please use either the Tax credit claim form 2000-2011 (IR526) and/or the Tax credit claim form 2013 (IR526).'
-},{
-	name: 'Tax credit claim form 2014 IR526',
-	path: '526',
-	country: 'New Zealand',
-	description:'Complete this form to claim tax credits for donations for the tax year 1 April 2013 to 31 March 2014. If you are making a claim for the years 2011 and before, or the 2012 year, please use either the Tax credit claim form 2000-2011 (IR526) and/or the Tax credit claim form 2013 (IR526).'
-}];*/
+var submissions = db.collection("submissions");
 
 server.get('api/forms', findAllForms);
 
@@ -60,8 +28,7 @@ function findAllForms(req, res , next){
         }else{
         	console.log('Response error '+err);
             return next(err);
-        }
- 
+        } 
     }); 
 }
 
@@ -84,6 +51,46 @@ function addNewForm(req , res , next){
             return next();
         }else{
         	console.log('Response error '+err);
+            return next(err);
+        }
+    });
+}
+
+server.get('api/submissions', findAllSubmissions);
+
+function findAllSubmissions(req, res , next){
+    res.setHeader('Access-Control-Allow-Origin','*');
+    submissions.find().limit(20).sort({postedOn : -1} , function(err , success){
+        if(success){
+            console.log('Response success '+success);
+            res.send(200 , success);
+            return next();
+        }else{
+            console.log('Response error '+err);
+            return next(err);
+        } 
+    }); 
+}
+
+server.post('api/submissions', addSubmission);
+
+function addSubmission(req , res , next){
+    var submission = {};
+    submission.name = req.params.name;
+    submission.description = req.params.description;
+    submission.country = req.params.country;
+    submission.data = req.params.data;
+    submission.date = req.params.date;
+ 
+    res.setHeader('Access-Control-Allow-Origin','*');
+ 
+    submissions.save(submission, function(err , success){
+        if(success){
+            console.log('Response success '+success);
+            res.send(201 , submission);
+            return next();
+        }else{
+            console.log('Response error '+err);
             return next(err);
         }
     });

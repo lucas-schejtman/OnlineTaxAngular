@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('donationsController', function ($scope, toaster, $window, $modal) {
+app.controller('donationsController', function ($scope, toaster, $window, modalService, apiService) {
     $scope.irdNumber = "";
     $scope.taxYear = "";
     $scope.box3 = "";
@@ -17,16 +17,35 @@ app.controller('donationsController', function ($scope, toaster, $window, $modal
     };
 
     $scope.save = function() {
-        var diag = $modal.open({
-            templateUrl: 'app/views/modal.html',
-            controller: 'modalController'
-        });
+        var modalOptions = {
+            closeButtonText: 'No',
+            actionButtonText: 'Yes',
+            headerText: 'Proceed?',
+            bodyText: 'Do you want to submit this form?'
+        };
 
-        diag.result.then(function() {
-            toaster.pop('information', 'Modal Info', 'Form submitted');
-        }, function() {
+        var submission = {};
+        submission.name = '526';
+        submission.description = 'Donations form';
+        submission.country = 'NZ';
+        submission.data = {"irdNumber" : $scope.irdNumber,
+                           "taxYear" : $scope.taxYear, 
+                           "box3" : $scope.box3, 
+                           "box3a" : $scope.box3a(), 
+                           "box4" : $scope.box4, 
+                           "box4a" : $scope.box4a(), 
+                           "box5" : $scope.box5};
+        submission.date = new Date();
+
+        modalService.showModal({}, modalOptions).then(function(){
+            apiService.saveSubmissions(submission).then(function () {
+                toaster.pop('information', 'Modal Info', 'Form submitted');
+            }, function(error) {
+                toaster.pop('error', 'Modal Info', error);
+            }); 
+        }, function(){
             toaster.pop('information', 'Modal Info', 'Dialog dismissed');
-        });
+        })
     };
 
     $scope.cancelBtn = function() {
