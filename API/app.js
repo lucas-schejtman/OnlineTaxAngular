@@ -4,17 +4,45 @@ var mongojs = require("mongojs");
 var server = restify.createServer({ name: 'api' });
 
 server.listen(8080, function() {
-	console.log('%s listening at %s', server.name, server.url);
+    console.log('%s listening at %s', server.name, server.url);
 });
 
 server.use(restify.fullResponse())
-	  .use(restify.bodyParser())
+      .use(restify.bodyParser())
       .use(restify.CORS());
 
 var connection_string = '127.0.0.1:27017/prototype';
 var db = mongojs(connection_string, ['prototype']);
+var users = db.collection("users");
 var forms = db.collection("forms");
 var submissions = db.collection("submissions");
+
+server.post('site/login', login);
+
+function login(req, res, next){
+    res.setHeader('Access-Control-Allow-Origin','*');
+    var credentials = {};
+    credentials.username = req.params.username;
+    credentials.password = req.params.password;
+
+    users.find({username : credentials.username}, function(err, success){
+        if(success){
+            if(credentials.password === success[0].password){
+                var user = {};
+                user.userId = success[0]._id;
+                user.userName = credentials.username;
+                res.send(200, user);
+                return next();
+            } else {
+                console.log('Password does not match');
+                return next(null);
+            }
+        } else {
+            console.log('Login error ' + err);
+            return next(err);
+        }
+    });
+};
 
 server.get('api/forms', findAllForms);
 
@@ -22,11 +50,11 @@ function findAllForms(req, res , next){
     res.setHeader('Access-Control-Allow-Origin','*');
     forms.find().limit(20).sort({postedOn : -1} , function(err , success){
         if(success){
-        	console.log('Response success '+success);
+            console.log('Response success '+success);
             res.send(200 , success);
             return next();
         }else{
-        	console.log('Response error '+err);
+            console.log('Response error '+err);
             return next(err);
         } 
     }); 
@@ -46,11 +74,11 @@ function addNewForm(req , res , next){
  
     forms.save(form, function(err , success){
         if(success){
-    		console.log('Response success '+success);
+            console.log('Response success '+success);
             res.send(201 , form);
             return next();
         }else{
-        	console.log('Response error '+err);
+            console.log('Response error '+err);
             return next(err);
         }
     });
