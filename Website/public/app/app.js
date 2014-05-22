@@ -1,4 +1,4 @@
-﻿var app = angular.module('OnlineTaxApp', ['ngRoute', 'chieffancypants.loadingBar', 'toaster', 'ngAnimate', 'ui.bootstrap']);
+﻿var app = angular.module('OnlineTaxApp', ['ngRoute', 'chieffancypants.loadingBar', 'toaster', /*'ngCookies',*/ 'ngAnimate', 'ui.bootstrap']);
 
 app.config(function ($routeProvider, cfpLoadingBarProvider) {
     $routeProvider
@@ -24,8 +24,7 @@ app.config(function ($routeProvider, cfpLoadingBarProvider) {
 
 app.run(function($rootScope, AUTH_EVENTS, authService, $location){
     $rootScope.$on('$locationChangeStart', function(event, next){
-        var route = next.substring(next.indexOf('#'), next.length);
-        if(authService.isAuthenticated() === false && route !== '#/login'){
+        if(authService.isAuthenticated() === false && $location.url() !== '/login'){
             $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             $location.path('/login');
         }

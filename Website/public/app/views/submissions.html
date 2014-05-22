@@ -1,11 +1,10 @@
-<div class="btn-group">
-	<!-- Needs icons -->
-    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'List'">List</label>
-    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Table'">Table</label>
+<div class="bar">
+	<a class="list-icon" ng-class="{active: layout == 'List'}" ng-click="layout = 'List'"></a>
+	<a class="table-icon" ng-class="{active: layout == 'Table'}" ng-click="layout = 'Table'"></a>
 </div>
 
-<div class="list-group" data-ng-show="radioModel == 'List'" data-ng-repeat="submission in submissions">
-	<a href="#/submissions"  ng-click="showData(submission.data);" class="list-group-item active">
+<div class="list-group" data-ng-show="layout == 'List'" data-ng-repeat="submission in submissions">
+	<a href="#/submissions"  ng-click="showData(submission.data);" class="list-group-item">
 		<h4 class="list-group-item-heading">Name: {{submission.name}}</h4>
 		<p class="list-group-item-text">Description: {{submission.description}}</p>
 		<p class="list-group-item-text">Country: {{submission.country}}</p>
@@ -13,7 +12,7 @@
 	</a>
 </div>
 
-<table class="table table-condensed" data-ng-show="radioModel == 'Table'">
+<table class="table table-condensed" data-ng-show="layout == 'Table'">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -26,7 +25,7 @@
 		<tr>
 			<td>{{submission.name}}</td>
 			<td>{{submission.description}}</td>
-			<td>{{submission.country}}</td>
+			<td><a class="btn" ng-model="search.$" ng-click="filterBy()">{{submission.country}}</a></td>
 			<td>{{submission.date}}</td>
 			<td><button class="btn btn-primary pull-right" ng-click="showData(submission.data);">Data</button></td>
 		</tr>

@@ -1,8 +1,11 @@
-app.service('sessionService', function(){
-	this.create = function(userId, userName){
+app.service('sessionService', function(/*$cookieStore*/){
+	//var currentUser = $cookieStore.get('user') || { userId: '', username: ''};
+	//$cookieStore.remove('user');
+
+	this.create = function(userId, username){
 		this.id = guid();
 		this.userId = userId;
-		this.userName = userName;
+		this.userName = username;
 	};
 	this.destroy = function() {
 		this.id = null;

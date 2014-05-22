@@ -3,7 +3,11 @@ app.controller('submissionsController', function($scope, apiService, modalServic
 	
 	$scope.submissions = [];
 
-	$scope.radioModel = 'Table';
+	$scope.layout = 'Table';
+
+	$scope.filterBy = function(){
+		console.log('filter by');
+	};
 
 	$scope.showData = function(data){
 		var modalOptions = {

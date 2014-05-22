@@ -4,7 +4,7 @@ exports.findAll = function (req, res , next){
     res.setHeader('Access-Control-Allow-Origin','*');
 
     forms = dbService.getCollection('forms');
-    forms.find().limit(20).sort({postedOn : -1} , function(err , success){
+    forms.find().sort({postedOn : -1} , function(err , success){
         if(success){
             console.log('Response success '+success);
             res.send(200 , success);
@@ -26,15 +26,12 @@ exports.add = function (req , res , next){
  
     res.setHeader('Access-Control-Allow-Origin','*');
  
-    forms = dbService.getCollection('forms');
-    forms.save(form, function(err , success){
-        if(success){
-            console.log('Response success '+success);
-            res.send(201 , form);
-            return next();
-        }else{
-            console.log('Response error '+err);
-            return next(err);
-        }
+    dbService.save("forms", form).then(
+    function(data){
+        res.send(201, data);
+        return next();
+    }, 
+    function(reason){
+        return next(reason);
     });
 };
